@@ -45,7 +45,11 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.chinhdev.lab6_kot104.Bai2Lab7.ScreenNavigation
+import com.chinhdev.lab6_kot104.Bai3Lab7.HandleLoginState
+import com.chinhdev.lab6_kot104.Bai3Lab7.LoginScreen
 import com.chinhdev.lab6_kot104.model.Movie
 import com.chinhdev.lab6_kot104.ui.theme.Lab6_KOT104Theme
 
@@ -124,10 +128,11 @@ class MainActivity : ComponentActivity() {
 //                        mainViewModel.movies.observeAsState(initial = emptyList())
 //                    MovieScreen(moviesState.value)
                     //bai 2 lab 7
+//                    ScreenNavigation()
+
+                    //bai 3 lab 7
+                    val navController = rememberNavController()
                     ScreenNavigation()
-
-
-
 
 //                    MovieScreen(movies = movies)
 //                    PreviewCinemaSeatBooking()
@@ -138,7 +143,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MovieListRow(movies: List<Movie>) {
+fun MovieListRow(movies: List<Movie>, navController: NavController) {
     LazyRow(
         state = rememberLazyListState(),
         contentPadding = PaddingValues(horizontal = 8.dp, vertical = 16.dp),
@@ -151,7 +156,7 @@ fun MovieListRow(movies: List<Movie>) {
 }
 
 @Composable
-fun MovieListGrid(movies: List<Movie>) {
+fun MovieListGrid(movies: List<Movie>, navController: NavController) {
     val gridState = rememberLazyStaggeredGridState()
     LazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Fixed(2),
@@ -171,7 +176,7 @@ enum class ListType {
 }
 
 @Composable
-fun MovieScreen(movies: List<Movie>) {
+fun MovieScreen(movies: List<Movie>,navController: NavController) {
     var listType by remember { mutableStateOf(ListType.ROW) }
     Column(
         modifier = Modifier.padding(top = 20.dp)
@@ -195,15 +200,15 @@ fun MovieScreen(movies: List<Movie>) {
             }
         }
         when (listType) {
-            ListType.ROW -> MovieListRow(movies)
-            ListType.COLUMN -> MovieListColumn(movies)
-            ListType.GRID -> MovieListGrid(movies)
+            ListType.ROW -> MovieListRow(movies,navController)
+            ListType.COLUMN -> MovieListColumn(movies,navController)
+            ListType.GRID -> MovieListGrid(movies,navController)
         }
     }
 }
 
 @Composable
-fun MovieListColumn(movies: List<Movie>) {
+fun MovieListColumn(movies: List<Movie>, navController: NavController) {
     LazyColumn(
         state = rememberLazyListState(),
         contentPadding = PaddingValues(horizontal = 8.dp, vertical = 16.dp),

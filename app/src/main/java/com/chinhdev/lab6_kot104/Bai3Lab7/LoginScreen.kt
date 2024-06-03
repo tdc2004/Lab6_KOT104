@@ -210,7 +210,7 @@ fun RememberMeSwitch(rememberMe: Boolean, onCheckedChange: (Boolean) -> Unit) {
         Text("Remember Me?", modifier = Modifier.padding(start = 12.dp))
     }
 }
-@Preview(showBackground = true, showSystemUi = true, device = "id:pixel_6_pro")
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun previewLogin(){
     val nav = rememberNavController()
