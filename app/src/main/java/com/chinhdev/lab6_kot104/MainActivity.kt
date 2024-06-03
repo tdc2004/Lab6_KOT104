@@ -26,7 +26,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -43,13 +42,12 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import androidx.compose.ui.unit.sp
+import com.chinhdev.lab6_kot104.Bai2Lab7.ScreenNavigation
 import com.chinhdev.lab6_kot104.model.Movie
 import com.chinhdev.lab6_kot104.ui.theme.Lab6_KOT104Theme
-import com.chinhdev.lab6_kot104.ui.theme.PreviewCinemaSeatBooking
 
 class MainActivity : ComponentActivity() {
     var movies = listOf(
@@ -120,8 +118,19 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    //bai 1 lab7
+//                    val mainViewModel: MainViewModel = viewModel()
+//                    val moviesState =
+//                        mainViewModel.movies.observeAsState(initial = emptyList())
+//                    MovieScreen(moviesState.value)
+                    //bai 2 lab 7
+                    ScreenNavigation()
+
+
+
+
 //                    MovieScreen(movies = movies)
-                    PreviewCinemaSeatBooking()
+//                    PreviewCinemaSeatBooking()
                 }
             }
         }
@@ -154,7 +163,7 @@ fun MovieListGrid(movies: List<Movie>) {
         items(movies.size) { index ->
             MovieItem(movie = movies[index])
         }
-    }
+    }   
 }
 
 enum class ListType {
